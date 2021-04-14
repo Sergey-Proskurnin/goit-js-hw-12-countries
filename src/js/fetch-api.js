@@ -33,10 +33,12 @@ function renderCountryCard(country) {
   if (country.length === 1) {
     const markupCard = countriesCards(country);
     refs.articleCards.innerHTML = markupCard;
+    deleteError();
   }
   if (country.length > 1 && country.length < 11) {
     const markupList = countrieslist(country);
     refs.list.innerHTML = markupList;
+    deleteError();
   }
   if (country.length > 10) {
     error({
@@ -48,4 +50,11 @@ function renderCountryCard(country) {
 function onCleanerInnerHTML() {
   refs.list.innerHTML = '';
   refs.articleCards.innerHTML = '';
+  deleteError();
+}
+function deleteError() {
+  const errorMessage = document.querySelector('.pnotify');
+  if (document.body.contains(errorMessage)) {
+    errorMessage.style.display = 'none';
+  }
 }
